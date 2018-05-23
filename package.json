@@ -33,7 +33,7 @@
     "validate": "concurrently --names \"lint,test:run,test:e2e\" --prefix \"[{name}]\" --prefix-colors \"bgGreen.reset.bold,bgBlue.reset.bold,bgRed.reset.bold\" \"npm run lint --silent\" \"npm run test:run --silent\" \"npm run test:e2e:run --silent\"",
     "precommit": "lint-staged && npm run --silent validate",
     "clean": "rimraf node_modules ./shared/node_modules ./client/node_modules ./server/node_modules ./other/configuration/calculator/node_modules ./other/configuration/calculator.solution/node_modules",
-    "setup": "node ./scripts/verify && node ./scripts/install && npm run validate && node ./scripts/autofill-feedback-email.js"
+    "setup": "node ./scripts/y && node ./scripts/install && npm run validate && node ./scripts/autofill-feedback-email.js"
   },
   "devDependencies": {
     "all-contributors-cli": "^4.10.1",
