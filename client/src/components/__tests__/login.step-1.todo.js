@@ -1,3 +1,7 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Login from '../login'
+
 // Basic unit test
 test('calls onSubmit with the username and password when submitted', () => {
   // Arrange
@@ -10,13 +14,29 @@ test('calls onSubmit with the username and password when submitted', () => {
   // TIP: const inputs = div.querySelectorAll('input')
   // TIP: const form = div.querySelector('form')
   // fill in the field values
+  const fakeUser = {username: 'lit', password: 'lit'}
+  const handleSubmit = jest.fn()
+  const container = document.createElement('div')
+  ReactDOM.render(<Login onSubmit={handleSubmit} />, container)
+  const form = container.querySelector('form')
+  const {username, password} = form.elements
+  username.value = fakeUser.username
+  password.value = fakeUser.password
+  const submitButtonNode = container.querySelector('button')
+  const submitEvent = new window.Event('submit')
+
   //
   // Act
   // submit the form:
   // TIP: formNode.dispatchEvent(new window.Event('submit'))
+  form.dispatchEvent(submitEvent)
+
   //
   // Assert
   // ensure your submit handler was called properly
+  expect(handleSubmit).toHaveBeenCalledTimes(1)
+  expect(handleSubmit).toHaveBeenCalledWith(fakeUser)
+  expect(submitButtonNode.type).toBe('submit')
 })
 
 //////// Elaboration & Feedback /////////
